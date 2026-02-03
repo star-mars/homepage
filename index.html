@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premagic — Event Marketing, Actually.</title>
+  <meta name="description" content="Premagic is the event marketing platform that turns events into shareable moments, driving organic reach, registrations, and measurable ROI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Poppins', Helvetica, Arial, sans-serif;
+      color: #203a56;
+      background: #fff;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ===== BRAND TOKENS ===== */
+    :root {
+      --blue-dark: #1f0f61;
+      --blue-mid: #2b4bc3;
+      --blue-light: #065077;
+      --coral: #ff6550;
+      --coral-light: #ff957d;
+      --pink: #f68985;
+      --pink-dark: #d9629f;
+      --purple: #7251f4;
+      --green: #13cf94;
+      --yellow: #f5ab33;
+      --gray-dark: #203a56;
+      --gray-mid: #8391a1;
+      --gray-light: #f5f7fa;
+      --white: #fff;
+      --gradient-brand: linear-gradient(154.5deg, #ff957d, #d9629f, #2b4bc3);
+      --gradient-dark: linear-gradient(160.44deg, #1943df, #041561);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
+      --shadow-md: 0 4px 16px rgba(0,0,0,.1);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,.12);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+    }
+
+    /* ===== UTILITY ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section-padding {
+      padding: 100px 0;
+    }
+    .text-center { text-align: center; }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      color: var(--blue-dark);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      color: var(--blue-dark);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    h3 {
+      font-size: clamp(1.25rem, 2vw, 1.5rem);
+      font-weight: 600;
+      color: var(--blue-dark);
+      line-height: 1.3;
+    }
+    .subheading {
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      color: var(--gray-dark);
+      line-height: 1.7;
+      max-width: 680px;
+    }
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--purple);
+      margin-bottom: 12px;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 32px;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+      min-width: 160px;
+    }
+    .btn-primary {
+      background: var(--blue-dark);
+      color: var(--white);
+    }
+    .btn-primary:hover {
+      background: #2a1a80;
+      box-shadow: 0 4px 20px rgba(31, 15, 97, 0.35);
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: #f0e6ff;
+      color: var(--blue-dark);
+    }
+    .btn-secondary:hover {
+      background: #e4d4ff;
+      transform: translateY(-2px);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--blue-dark);
+      border: 2px solid var(--blue-dark);
+    }
+    .btn-ghost:hover {
+      background: var(--blue-dark);
+      color: var(--white);
+    }
+    .btn-link {
+      background: none;
+      color: var(--blue-mid);
+      padding: 0;
+      min-width: auto;
+      font-weight: 600;
+    }
+    .btn-link:hover {
+      color: var(--blue-dark);
+    }
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    /* ===== HEADER / NAV ===== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      transition: box-shadow 0.3s;
+    }
+    .header.scrolled {
+      box-shadow: var(--shadow-sm);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav-logo img {
+      height: 32px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--gray-dark);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--blue-dark);
+    }
+    .nav-cta .btn {
+      padding: 10px 24px;
+      font-size: 0.9rem;
+    }
+    .mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--blue-dark);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ===== HERO — CENTER ALIGNED ===== */
+    .hero {
+      padding-top: 140px;
+      padding-bottom: 80px;
+      background: linear-gradient(180deg, #f8f6ff 0%, #fff 100%);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(114,81,244,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -150px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,101,80,0.05) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 {
+      margin-bottom: 24px;
+    }
+    .hero h1 .accent {
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero .subheading {
+      margin: 0 auto 40px;
+    }
+    .hero .btn-group {
+      margin-bottom: 60px;
+      justify-content: center;
+    }
+
+    /* ===== TRUST BAR — TICKER ===== */
+    .trust-bar {
+      padding-top: 40px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .trust-bar p {
+      font-size: 0.85rem;
+      color: var(--gray-mid);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .logo-ticker-wrapper {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+    .logo-ticker-wrapper::before,
+    .logo-ticker-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .logo-ticker-wrapper::before {
+      left: 0;
+      background: linear-gradient(90deg, #f8f6ff 0%, transparent 100%);
+    }
+    .logo-ticker-wrapper::after {
+      right: 0;
+      background: linear-gradient(-90deg, #f8f6ff 0%, transparent 100%);
+    }
+    .logo-ticker-track {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      animation: logoTicker 30s linear infinite;
+      width: max-content;
+    }
+    @keyframes logoTicker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .logo-ticker-track .logo-item {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gray-mid);
+      opacity: 0.55;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: opacity 0.3s;
+    }
+    .logo-ticker-track .logo-item:hover {
+      opacity: 1;
+    }
+
+    /* ===== FOLD 2 — GITEX CASE STUDY ===== */
+    .gitex-section {
+      background: var(--blue-dark);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .gitex-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(25,67,223,0.15) 0%, rgba(114,81,244,0.1) 50%, rgba(214,98,159,0.08) 100%);
+    }
+    .gitex-section .container {
+      position: relative;
+      z-index: 1;
+    }
+    .gitex-section h2 {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .gitex-section .subheading {
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 48px;
+    }
+
+    /* Video embed area */
+    .video-wrapper {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      margin-bottom: 56px;
+      aspect-ratio: 16/9;
+      background: #0a0628;
+      cursor: pointer;
+    }
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .video-thumbnail {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .video-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+      z-index: 2;
+    }
+    .video-play-btn:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .video-play-btn svg {
+      width: 28px;
+      height: 28px;
+      margin-left: 4px;
+      fill: var(--blue-dark);
+    }
+
+    /* Stats row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 24px;
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-number {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 800;
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+    .stat-number.coral { color: var(--coral); }
+    .stat-number.pink { color: var(--pink); }
+    .stat-number.purple { color: var(--purple); }
+    .stat-number.green { color: var(--green); }
+    .stat-label {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 500;
+    }
+    .gitex-cta {
+      text-align: center;
+    }
+    .gitex-cta .btn-link {
+      color: var(--coral-light);
+      font-size: 1.05rem;
+    }
+    .gitex-cta .btn-link:hover {
+      color: var(--white);
+    }
+
+    /* ===== FOLD 3 — CAMPAIGN EXAMPLES ===== */
+    .campaigns-section {
+      background: var(--gray-light);
+    }
+    .campaigns-section .section-header {
+      margin-bottom: 64px;
+    }
+    .campaigns-grid {
+      display: grid;
+      gap: 32px;
+    }
+
+    .campaign-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .campaign-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .campaign-card:nth-child(even) {
+      direction: rtl;
+    }
+    .campaign-card:nth-child(even) > * {
+      direction: ltr;
+    }
+
+    .campaign-visual {
+      position: relative;
+      min-height: 360px;
+      overflow: hidden;
+    }
+    .campaign-visual img.campaign-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .campaign-content {
+      padding: 40px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .campaign-content h3 {
+      margin-bottom: 12px;
+      font-size: 1.25rem;
+    }
+    .campaign-content .description {
+      font-size: 0.95rem;
+      color: var(--gray-mid);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .campaign-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 100px;
+      background: #f0e6ff;
+      color: var(--purple);
+    }
+    .testimonial {
+      padding: 20px;
+      background: var(--gray-light);
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--purple);
+    }
+    .testimonial blockquote {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--gray-dark);
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    .testimonial cite {
+      font-size: 0.8rem;
+      color: var(--gray-mid);
+      font-style: normal;
+      font-weight: 500;
+    }
+    .campaigns-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    /* ===== FOLD 5 — ANALYTICS ===== */
+    .analytics-section {
+      background: #fff;
+      position: relative;
+    }
+    .analytics-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .analytics-content .subheading {
+      margin-bottom: 32px;
+    }
+    .analytics-features {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .analytics-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--gray-dark);
+    }
+    .analytics-feature .icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .icon-impressions { background: #ede7f6; color: var(--purple); }
+    .icon-reach { background: #e3f2fd; color: var(--blue-mid); }
+    .icon-downloads { background: #e8f5e9; color: var(--green); }
+    .icon-sponsor { background: #fce4ec; color: var(--coral); }
+
+    .analytics-visual {
+      position: relative;
+    }
+    .dashboard-mockup {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .dashboard-topbar {
+      background: var(--blue-dark);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dashboard-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dashboard-dot.red { background: #ff5f57; }
+    .dashboard-dot.yellow { background: #ffbd2e; }
+    .dashboard-dot.green { background: #28c840; }
+    .dashboard-body {
+      padding: 24px;
+    }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .dash-metric {
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      background: var(--gray-light);
+    }
+    .dash-metric-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--gray-mid);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+    .dash-metric-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--blue-dark);
+    }
+    .dash-chart {
+      height: 120px;
+      background: linear-gradient(180deg, rgba(114,81,244,0.08) 0%, rgba(114,81,244,0.01) 100%);
+      border-radius: var(--radius-sm);
+      position: relative;
+      overflow: hidden;
+    }
+    .dash-chart-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+    }
+    .dash-chart-line svg {
+      width: 100%;
+      height: 100%;
+    }
+    .dash-map {
+      height: 100px;
+      background: var(--gray-light);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 16px;
+    }
+    .analytics-testimonial {
+      margin-top: 32px;
+    }
+
+    /* ===== FOLD 6 — INTEGRATIONS ===== */
+    .integrations-section {
+      background: var(--gray-light);
+    }
+    .integrations-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 48px;
+      margin-bottom: 48px;
+    }
+    .integration-logo {
+      width: 120px;
+      height: 64px;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gray-mid);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .integration-logo:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      background: var(--gradient-dark);
+      color: var(--white);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(114,81,244,0.2) 0%, transparent 60%);
+      border-radius: 50%;
+    }
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,101,80,0.1) 0%, transparent 60%);
+      border-radius: 50%;
+    }
+    .cta-section .container {
+      position: relative;
+      z-index: 1;
+    }
+    .cta-section h2 {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .cta-section .subheading {
+      color: rgba(255,255,255,0.75);
+      margin: 0 auto 40px;
+    }
+    .cta-section .btn-primary {
+      background: var(--white);
+      color: var(--blue-dark);
+    }
+    .cta-section .btn-primary:hover {
+      background: #f0f0f0;
+      box-shadow: 0 4px 20px rgba(255,255,255,0.25);
+    }
+    .cta-section .btn-ghost {
+      border-color: rgba(255,255,255,0.4);
+      color: var(--white);
+    }
+    .cta-section .btn-ghost:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--white);
+    }
+
+    /* ===== FOLD 7 — WALL OF LOVE ===== */
+    .linkedin-wall-section {
+      background: #fff;
+      overflow: hidden;
+    }
+    .linkedin-wall-section .section-header {
+      margin-bottom: 48px;
+    }
+    .ticker-wrapper {
+      position: relative;
+      overflow: hidden;
+      padding: 20px 0;
+    }
+    .ticker-wrapper::before,
+    .ticker-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100px;
+      z-index: 2;
+    }
+    .ticker-wrapper::before {
+      left: 0;
+      background: linear-gradient(90deg, #fff, transparent);
+    }
+    .ticker-wrapper::after {
+      right: 0;
+      background: linear-gradient(-90deg, #fff, transparent);
+    }
+    .ticker-track {
+      display: flex;
+      gap: 24px;
+      animation: ticker 40s linear infinite;
+      width: max-content;
+    }
+    .ticker-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker-card {
+      width: 340px;
+      flex-shrink: 0;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid #e8e8e8;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.3s;
+    }
+    .ticker-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+    .ticker-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 16px 8px;
+    }
+    .ticker-card-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .ticker-card-meta .tname {
+      font-weight: 600;
+      font-size: 0.82rem;
+      color: #000;
+    }
+    .ticker-card-meta .ttitle {
+      font-size: 0.7rem;
+      color: #666;
+      line-height: 1.3;
+    }
+    .ticker-card-body {
+      padding: 0 16px 12px;
+      font-size: 0.78rem;
+      color: #333;
+      line-height: 1.5;
+    }
+    .ticker-card-body .hashtag {
+      color: var(--blue-mid);
+      font-weight: 500;
+    }
+    .ticker-card-image {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+    }
+    .ticker-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .ticker-card-footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 16px;
+      border-top: 1px solid #eee;
+      font-size: 0.7rem;
+      color: #999;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--blue-dark);
+      color: rgba(255,255,255,0.8);
+      padding: 64px 0 32px;
+      position: relative;
+    }
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-brand);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-top: 16px;
+      max-width: 300px;
+    }
+    .footer h4 {
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: var(--white);
+    }
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    .social-icon:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    .social-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: #fff;
+    }
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-bottom-links a {
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-bottom-links a:hover {
+      color: var(--white);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .campaign-card {
+        grid-template-columns: 1fr;
+      }
+      .campaign-card:nth-child(even) {
+        direction: ltr;
+      }
+      .campaign-visual {
+        min-height: 300px;
+      }
+      .analytics-layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 768px) {
+      .section-padding {
+        padding: 64px 0;
+      }
+      .nav-links {
+        display: none;
+      }
+      .mobile-toggle {
+        display: flex;
+      }
+      .hero {
+        padding-top: 120px;
+        padding-bottom: 60px;
+      }
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .campaign-content {
+        padding: 24px;
+      }
+      .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    @media (max-width: 480px) {
+      .btn-group {
+        flex-direction: column;
+        width: 100%;
+      }
+      .btn-group .btn {
+        width: 100%;
+      }
+      .stats-row {
+        grid-template-columns: 1fr;
+      }
+      .integrations-grid {
+        gap: 12px;
+      }
+      .integration-logo {
+        width: 100px;
+        height: 52px;
+        font-size: 0.75rem;
+      }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="https://www.premagic.com" class="nav-logo">
+          <svg fill="none" height="30" viewBox="0 0 143 30" width="143" xmlns="http://www.w3.org/2000/svg"><clipPath id="logo-a"><path d="m0 .58105h143v28.8379h-143z"/></clipPath><g clip-path="url(#logo-a)"><g fill="#1f0f61"><path d="m16.9451 10.6694c1.7683 0 3.2563.5949 4.464 1.7863 1.2076 1.1915 1.8114 2.6526 1.8114 4.3849 0 1.7324-.6038 3.1953-1.8114 4.385-1.2077 1.1914-2.6957 1.7863-4.464 1.7863h-3.2294v4.7533c0 .7098-.5751 1.2849-1.2849 1.2849h-1.0531c-.7099 0-1.2849-.5751-1.2849-1.2849v-15.809c0-.7099.575-1.2868 1.2867-1.2868h5.5674zm0 8.9531c.7709 0 1.4089-.2659 1.9175-.8015.5068-.5337.7619-1.195.7619-1.9821 0-.7872-.2533-1.4701-.7619-1.9948-.5086-.5248-1.1466-.7871-1.9175-.7871h-3.2294v5.5673h3.2294z"/><path d="m35.9722 28.4121-3.3426-5.7417h-2.7444v5.0948c0 .7098-.5751 1.2867-1.2867 1.2867h-1.0513c-.7099 0-1.2868-.5751-1.2868-1.2867v-15.809c0-.7099.5751-1.2868 1.2868-1.2868h6.0669c1.6983 0 3.1414.5949 4.3328 1.7863 1.1897 1.1915 1.7863 2.6256 1.7863 4.3059 0 1.1375-.3234 2.1924-.9722 3.1647-.6469.9722-1.5059 1.7018-2.5734 2.1924l3.3174 5.6519c.3325.566-.0755 1.2813-.7332 1.2813h-1.6875c-.4582 0-.8805-.2426-1.1106-.6378zm-6.0867-14.3534v5.4345h3.7289c.6829 0 1.2688-.266 1.7594-.8015.4906-.5338.735-1.1771.735-1.9301s-.2462-1.391-.735-1.9175c-.4906-.5248-1.0765-.7871-1.7594-.7871h-3.7289z"/><path d="m46.4818 25.5835h6.4606c.7098 0 1.2867.5751 1.2867 1.2867v.895c0 .7098-.5751 1.2867-1.2867 1.2867h-8.7968c-.7098 0-1.2867-.5751-1.2867-1.2867v-15.809c0-.7099.5751-1.2868 1.2867-1.2868h8.6656c.7098 0 1.2867.5751 1.2867 1.2868v.8949c0 .7099-.5751 1.2867-1.2867 1.2867h-6.3294v3.9123h5.6716c.7099 0 1.2868.5751 1.2868 1.2867v.841c0 .7099-.5751 1.2868-1.2868 1.2868h-5.6716v4.1225z"/><path d="m75.8639 11.9562v15.8091c0 .7098-.5751 1.2867-1.2867 1.2867h-1.0262c-.7098 0-1.2867-.5751-1.2867-1.2867v-10.6352l-5.0786 8.3546c-.0665.1079-.1815.1762-.3073.1798-.1365.0053-.2641-.0647-.3342-.1798l-5.0445-8.3079v10.5903c0 .7098-.575 1.2867-1.2867 1.2867h-1.0513c-.7098 0-1.2867-.5751-1.2867-1.2867v-15.8109c0-.7098.5751-1.2867 1.2867-1.2867h1.7198c.4493 0 .8662.2336 1.0999.6182l4.8952 8.06 4.8684-8.0582c.2336-.3846.6505-.6218 1.0998-.6218h1.7324c.7098 0 1.2867.5751 1.2867 1.2867z"/><path d="m91.8422 28.1929-.8662-2.4513h-7.5495l-.8105 2.4297c-.1743.5248-.6667.8788-1.2203.8788h-1.4844c-.7332 0-1.2471-.7242-1.0063-1.4179l5.6357-16.102c.1797-.5157.6667-.8608 1.213-.8608h2.6669c.5445 0 1.0315.3433 1.213.8572l5.6806 16.102c.2444.6937-.2695 1.4197-1.0045 1.4197h-1.258c-.5445 0-1.0315-.3433-1.2131-.8572zm-7.235-5.8388h5.1738l-2.6525-7.51z"/><path d="m114.487 19.1765c.71 0 1.287.5751 1.287 1.2867v.1312c0 2.6256-.841 4.7533-2.522 6.3797-1.68 1.6282-3.851 2.4423-6.512 2.4423-2.836 0-5.187-.9237-7.0504-2.7694-1.8636-1.8474-2.7963-4.1009-2.7963-6.7606s.9237-4.9456 2.7693-6.8002c1.8474-1.8546 4.1354-2.7837 6.8664-2.7837 1.715 0 3.282.39 4.7.1681.922.5068 1.711 1.1232 2.366 1.8474.55.611.407 1.5725-.307 1.9822l-.87.5014c-.514.2965-1.166.2049-1.572-.2264-.377-.4026-.841-.7512-1.391-1.0459-.884-.4727-1.869-.7099-2.954-.7099-1.751 0-3.19.5733-4.319 1.7198-1.128 1.1466-1.693 2.595-1.693 4.3454s.574 3.1647 1.72 4.2932c1.147 1.1286 2.665 1.6929 4.556 1.6929 1.4 0 2.561-.3109 3.479-.9327s1.545-1.4754 1.878-2.5608h-4.281c-.71 0-1.287-.5751-1.287-1.2868v-.6307c0-.7099.576-1.2868 1.287-1.2868h6.644z"/><path d="m120.42 10.6694h1.051c.71 0 1.287.5751 1.287 1.2868v15.809c0 .7098-.575 1.2867-1.287 1.2867h-1.051c-.71 0-1.287-.5751-1.287-1.2867v-15.809c0-.7099.575-1.2868 1.287-1.2868z"/><path d="m135.678 29.4182c-2.766 0-5.05-.9184-6.853-2.7568-1.802-1.8384-2.704-4.1045-2.704-6.8002 0-2.6956.902-4.9851 2.704-6.8145 1.803-1.8295 4.087-2.7442 6.853-2.7442 1.662 0 3.198.39 4.607 1.1681.942.5212 1.745 1.1663 2.41 1.9337.523.6038.352 1.5401-.339 1.9408l-.886.514c-.529.3073-1.204.2031-1.605-.2588-.376-.4313-.827-.7925-1.353-1.0836-.841-.4637-1.787-.6955-2.836-.6955-1.787 0-3.226.5607-4.319 1.6803-1.094 1.1196-1.64 2.5734-1.64 4.3579s.546 3.2132 1.64 4.3328c1.095 1.1196 2.534 1.6803 4.319 1.6803 1.049 0 2-.2318 2.848-.6955.527-.2875.972-.6397 1.341-1.0585.402-.4582 1.076-.5625 1.603-.2569l.888.5139c.69.4008.862 1.3353.339 1.9391-.663.7673-1.463 1.4125-2.399 1.9337-1.4.7799-2.94 1.1681-4.622 1.1681z"/></g><path d="m12.3478.58105h-.0018c-.8783 0-1.5904.71205-1.5904 1.59042v3.5205c0 .8784.7121 1.5904 1.5904 1.5904h.0018c.8784 0 1.5905-.7121 1.5905-1.5904v-3.5205c0-.87837-.7121-1.59042-1.5905-1.59042z" fill="#ff6550"/><path d="m4.7910 3.11698c-.62179-.62179-1.62816-.62179-2.24996 0-.62179.62179-.62179 1.62817 0 2.24996l3.56723 3.56723c.62179.62179 1.62817.62179 2.24996 0 .62179-.6218.62179-1.62817 0-2.24996z" fill="#ff6550"/><path d="m5.11093 11.335h-3.5205c-.878372 0-1.590443.712-1.590443 1.5904v.0018c0 .8784.712058 1.5904 1.590443 1.5904h3.5205c.878372 0 1.590443-.712 1.590443-1.5904v-.0018c0-.8784-.712058-1.5904-1.590443-1.5904z" fill="#ff6550"/></g></svg>
+        </a>
+        <div class="nav-links">
+          <a href="https://www.premagic.com/smart-photo-distribution-for-seamless-events/">Photo Distribution</a>
+          <a href="https://www.premagic.com/create-event-marketing-posters/">Marketing Posters</a>
+          <a href="https://www.premagic.com/avatar-studio/">AI Avatars</a>
+          <a href="https://www.premagic.com/case-study/">Case Studies</a>
+          <a href="https://blog.premagic.com/">Blog</a>
+        </div>
+        <div class="nav-cta">
+          <a href="https://www.premagic.com/request-a-demo/" class="btn btn-primary">Book a Demo</a>
+        </div>
+        <button class="mobile-toggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO — CENTER ALIGNED ===== -->
+  <section class="hero">
+    <div class="container">
+      <div class="fade-up">
+        <h1>Event Marketing,<br><span class="accent">Actually.</span></h1>
+        <p class="subheading">
+          Most attendees never share the events they attend &mdash; that's a massive missed opportunity. Premagic delivers the right personalised content to the right attendee at the right time, turning them into your most powerful marketing channel.
+        </p>
+        <div class="btn-group">
+          <a href="https://www.premagic.com/request-a-demo/" class="btn btn-primary">Book a Demo</a>
+          <a href="#how-it-works" class="btn btn-secondary">See How It Works &darr;</a>
+        </div>
+      </div>
+      <div class="trust-bar fade-up">
+        <p>Powering GITEX, Informa Connect, IDC, G2, and 2,000+ events worldwide</p>
+        <div class="logo-ticker-wrapper">
+          <div class="logo-ticker-track">
+            <span class="logo-item">GITEX Global</span>
+            <span class="logo-item">Informa Connect</span>
+            <span class="logo-item">IDC</span>
+            <span class="logo-item">G2 Live</span>
+            <span class="logo-item">Nasscom</span>
+            <span class="logo-item">Step Conference</span>
+            <span class="logo-item">Khaleej Times</span>
+            <span class="logo-item">HCL Tech</span>
+            <span class="logo-item">African Tech Summit</span>
+            <span class="logo-item">SaaSBOOMi</span>
+            <span class="logo-item">Wow Awards</span>
+            <span class="logo-item">IFEAT</span>
+            <span class="logo-item">Asia Berlin</span>
+            <span class="logo-item">GLA Global</span>
+            <span class="logo-item">Currency Research</span>
+            <span class="logo-item">JSConf India</span>
+            <span class="logo-item">UmagineChennai</span>
+            <span class="logo-item">Middle East Event Show</span>
+            <span class="logo-item">Entrepreneurs Org</span>
+            <span class="logo-item">Shows of India</span>
+            <!-- Duplicate for seamless loop -->
+            <span class="logo-item">GITEX Global</span>
+            <span class="logo-item">Informa Connect</span>
+            <span class="logo-item">IDC</span>
+            <span class="logo-item">G2 Live</span>
+            <span class="logo-item">Nasscom</span>
+            <span class="logo-item">Step Conference</span>
+            <span class="logo-item">Khaleej Times</span>
+            <span class="logo-item">HCL Tech</span>
+            <span class="logo-item">African Tech Summit</span>
+            <span class="logo-item">SaaSBOOMi</span>
+            <span class="logo-item">Wow Awards</span>
+            <span class="logo-item">IFEAT</span>
+            <span class="logo-item">Asia Berlin</span>
+            <span class="logo-item">GLA Global</span>
+            <span class="logo-item">Currency Research</span>
+            <span class="logo-item">JSConf India</span>
+            <span class="logo-item">UmagineChennai</span>
+            <span class="logo-item">Middle East Event Show</span>
+            <span class="logo-item">Entrepreneurs Org</span>
+            <span class="logo-item">Shows of India</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOLD 2 — GITEX CASE STUDY ===== -->
+  <section class="gitex-section section-padding" id="how-it-works">
+    <div class="container">
+      <div class="text-center fade-up">
+        <p class="section-label" style="color: var(--coral-light);">Case Study &mdash; GITEX Global</p>
+        <h2>18,000 Posts. $1M in Earned Media.<br>Zero Ad Spend.</h2>
+        <p class="subheading" style="margin: 0 auto 48px;">
+          See how GITEX GLOBAL turned 16,000 attendees into an organic marketing engine.
+        </p>
+      </div>
+
+      <div class="video-wrapper fade-up" id="videoWrapper">
+        <img
+          class="video-thumbnail"
+          src="https://i.ytimg.com/vi/EnwZOYOTfU8/hqdefault.jpg"
+          alt="Premagic at GITEX Global — Event Marketing across the Entire Event Life Cycle"
+          id="videoThumb"
+        >
+        <div class="video-play-btn" id="videoPlayBtn">
+          <svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg>
+        </div>
+      </div>
+
+      <div class="stats-row fade-up">
+        <div class="stat-item">
+          <div class="stat-number coral">94%</div>
+          <div class="stat-label">Attendee Participation</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number pink">18,000</div>
+          <div class="stat-label">Social Posts in 72 Hours</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number purple">180+</div>
+          <div class="stat-label">Countries Reached</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number green">$1M</div>
+          <div class="stat-label">Equivalent Ad Value</div>
+        </div>
+      </div>
+
+      <div class="gitex-cta fade-up">
+        <a href="https://www.premagic.com/case-study/gitex-global/" class="btn btn-link">
+          Read the Full Case Study &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOLD 3 — CAMPAIGN EXAMPLES ===== -->
+  <section class="campaigns-section section-padding">
+    <div class="container">
+      <div class="section-header text-center fade-up">
+        <p class="section-label">What Marketers Are Building</p>
+        <h2>Real Events. Real Campaigns.</h2>
+        <p class="subheading" style="margin: 0 auto;">
+          Pre-event hype. During-event buzz. Post-event longevity. Here's what event marketers are building with Premagic.
+        </p>
+      </div>
+
+      <div class="campaigns-grid">
+
+        <!-- Campaign 1 — AI Avatar Challenge -->
+        <div class="campaign-card fade-up">
+          <div class="campaign-visual">
+            <img
+              class="campaign-img"
+              src="https://premagic.com/static/f96331c4690da834990c3a96d13ca4ef/898b2/avatar-battle.png"
+              alt="AI Avatar Challenge — #aieavatarchallenge campaign driving registrations"
+            >
+          </div>
+          <div class="campaign-content">
+            <h3>AI GITEX Egypt drove 2,000+ registrations with personalized AI avatars</h3>
+            <p class="description">
+              Attendees created branded AI avatars and shared "I'm Attending" posts weeks before the event &mdash; turning registrants into promoters.
+            </p>
+            <div class="campaign-tags">
+              <span class="tag">AI Avatars</span>
+              <span class="tag">Event Marketing Posters</span>
+            </div>
+            <div class="testimonial">
+              <blockquote>&ldquo;The biggest thing for us year on year is to ensure that our exhibitors and visitors are getting the results they need after making the effort to travel all the way from different parts of the world to Dubai.&rdquo;</blockquote>
+              <cite>&mdash; Shreya Shyam Sunder, Marketing Executive, DWTC</cite>
+            </div>
+          </div>
+        </div>
+
+        <!-- Campaign 2 — Middle East Event Show -->
+        <div class="campaign-card fade-up">
+          <div class="campaign-visual">
+            <img
+              class="campaign-img"
+              src="https://media.licdn.com/dms/image/v2/D5622AQFzOXb3aMYQOw/feedshare-shrink_800/B56ZsmATC5GsAg-/0/1765869175134?e=2147483647&v=beta&t=PmKrd_ahgY8UQt-uXFwts_-8IMVXurHU5B2LDVbQ8EA"
+              alt="Middle East Event Show — Informa Connect photo sharing campaign"
+            >
+          </div>
+          <div class="campaign-content">
+            <h3>Informa Connect made photo sharing effortless &mdash; attendees posted same-day</h3>
+            <p class="description">
+              Professional event photos delivered instantly via facial recognition. No gallery hunting. Attendees got their photos and shared them while the energy was still high.
+            </p>
+            <div class="campaign-tags">
+              <span class="tag">AI Photo Distribution</span>
+            </div>
+            <div class="testimonial">
+              <blockquote>&ldquo;Our attendees no longer ask us to send the photos. They ask for 'the Premagic link'.&rdquo;</blockquote>
+              <cite>&mdash; Amar Daginawala, Informa Connect</cite>
+            </div>
+          </div>
+        </div>
+
+        <!-- Campaign 3 — ETL London -->
+        <div class="campaign-card fade-up">
+          <div class="campaign-visual">
+            <img
+              class="campaign-img"
+              src="https://media.licdn.com/dms/image/v2/D4E10AQF3e3M_e1ihzg/image-shrink_1280/B4EZsNXfuuKoAU-/0/1765455822973?e=2147483647&v=beta&t=jap77Cl8V3-fK6jW2DUNE4aGPWDTr0xv3RLXQ_dp99Q"
+              alt="ETL London — speakers amplified sessions with branded video posts"
+            >
+          </div>
+          <div class="campaign-content">
+            <h3>ETL speakers amplified their sessions with branded video posts</h3>
+            <p class="description">
+              Speakers received ready-to-share session clips with event branding. One click to LinkedIn. The event stayed in feeds weeks after it ended.
+            </p>
+            <div class="campaign-tags">
+              <span class="tag">Session Videos</span>
+              <span class="tag">Event Marketing Posters</span>
+              <span class="tag">Sparks</span>
+            </div>
+            <div class="testimonial">
+              <blockquote>&ldquo;Premagic has been a true game-changer for our B2B marketing. Branded content, sponsorship integrations, advocacy posters &mdash; so many valuable features.&rdquo;</blockquote>
+              <cite>&mdash; Lorraine F., The Hospitality Network</cite>
+            </div>
+          </div>
+        </div>
+
+        <!-- Campaign 4 — GITEX 2025 I'm Attending -->
+        <div class="campaign-card fade-up">
+          <div class="campaign-visual">
+            <img
+              class="campaign-img"
+              src="https://media.licdn.com/dms/image/v2/D4D10AQHynQEB6PzE9A/image-shrink_800/B4DZnDM7tbJAAc-/0/1759916572636?e=2147483647&v=beta&t=XdcsMP6tOrw3IeHti-6zvcdmTD1iN1BhB25GSqySC0Q"
+              alt="GITEX Global 2025 — I'm Attending poster driving registrations"
+            >
+          </div>
+          <div class="campaign-content">
+            <h3>"I'm Attending" posters that drive registrations</h3>
+            <p class="description">
+              Personalized, branded posters make it effortless for attendees to share that they're attending &mdash; turning every registrant into a promoter for your event.
+            </p>
+            <div class="campaign-tags">
+              <span class="tag">Event Marketing Posters</span>
+            </div>
+            <div class="testimonial">
+              <blockquote>&ldquo;Premagic has been a true game-changer for our B2B marketing. Branded content, sponsorship integrations, advocacy posters &mdash; so many valuable features.&rdquo;</blockquote>
+              <cite>&mdash; Lorraine F., The Hospitality Network</cite>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="campaigns-cta fade-up">
+        <a href="#" class="btn btn-ghost">Explore More Campaign Ideas &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOLD 5 — ANALYTICS ===== -->
+  <section class="analytics-section section-padding">
+    <div class="container">
+      <div class="analytics-layout">
+        <div class="analytics-content fade-up">
+          <p class="section-label">Analytics Dashboard</p>
+          <h2>Prove the Buzz.</h2>
+          <p class="subheading">
+            Your dashboard tracks what matters: impressions generated, reach by geography, downloads, shares, sponsor exposure. No more guessing. No more "we think it went well."
+          </p>
+          <div class="analytics-features">
+            <div class="analytics-feature">
+              <div class="icon icon-impressions">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              Impressions Generated
+            </div>
+            <div class="analytics-feature">
+              <div class="icon icon-reach">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+              </div>
+              Reach by Geography
+            </div>
+            <div class="analytics-feature">
+              <div class="icon icon-downloads">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              </div>
+              Downloads &amp; Shares
+            </div>
+            <div class="analytics-feature">
+              <div class="icon icon-sponsor">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/></svg>
+              </div>
+              Sponsor Exposure
+            </div>
+          </div>
+          <div class="testimonial analytics-testimonial">
+            <blockquote>&ldquo;It's got all the things that a modern event marketer would need.&rdquo;</blockquote>
+            <cite>&mdash; Shreya Shyamsunder, Dubai World Trade Centre</cite>
+          </div>
+        </div>
+        <div class="analytics-visual fade-up">
+          <div class="dashboard-mockup">
+            <div class="dashboard-topbar">
+              <div class="dashboard-dot red"></div>
+              <div class="dashboard-dot yellow"></div>
+              <div class="dashboard-dot green"></div>
+            </div>
+            <div class="dashboard-body">
+              <div class="dashboard-grid">
+                <div class="dash-metric">
+                  <div class="dash-metric-label">Impressions</div>
+                  <div class="dash-metric-value" style="color: var(--purple);">2.4M</div>
+                </div>
+                <div class="dash-metric">
+                  <div class="dash-metric-label">Downloads</div>
+                  <div class="dash-metric-value" style="color: var(--green);">18.2K</div>
+                </div>
+                <div class="dash-metric">
+                  <div class="dash-metric-label">Social Shares</div>
+                  <div class="dash-metric-value" style="color: var(--coral);">9.7K</div>
+                </div>
+              </div>
+              <div class="dash-chart">
+                <div class="dash-chart-line">
+                  <svg viewBox="0 0 400 120" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#7251f4" stop-opacity="0.3"/>
+                        <stop offset="100%" stop-color="#7251f4" stop-opacity="0.02"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M0,100 Q50,80 100,65 T200,40 T300,20 T400,10 V120 H0 Z" fill="url(#chartGrad)"/>
+                    <path d="M0,100 Q50,80 100,65 T200,40 T300,20 T400,10" fill="none" stroke="#7251f4" stroke-width="2.5"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="dash-map">
+                <svg width="200" height="60" viewBox="0 0 200 60" fill="none">
+                  <ellipse cx="60" cy="25" rx="8" ry="8" fill="#7251f4" opacity="0.3"/>
+                  <ellipse cx="60" cy="25" rx="4" ry="4" fill="#7251f4"/>
+                  <ellipse cx="120" cy="20" rx="12" ry="12" fill="#ff6550" opacity="0.3"/>
+                  <ellipse cx="120" cy="20" rx="5" ry="5" fill="#ff6550"/>
+                  <ellipse cx="160" cy="30" rx="6" ry="6" fill="#13cf94" opacity="0.3"/>
+                  <ellipse cx="160" cy="30" rx="3" ry="3" fill="#13cf94"/>
+                  <ellipse cx="40" cy="40" rx="5" ry="5" fill="#f5ab33" opacity="0.3"/>
+                  <ellipse cx="40" cy="40" rx="2.5" ry="2.5" fill="#f5ab33"/>
+                  <ellipse cx="140" cy="45" rx="4" ry="4" fill="#d9629f" opacity="0.3"/>
+                  <ellipse cx="140" cy="45" rx="2" ry="2" fill="#d9629f"/>
+                  <text x="100" y="58" text-anchor="middle" font-size="7" fill="#8391a1" font-family="Poppins">Reach by Geography — 180+ countries</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOLD 6 — INTEGRATIONS ===== -->
+  <section class="integrations-section section-padding">
+    <div class="container text-center">
+      <div class="fade-up">
+        <p class="section-label">Integrations</p>
+        <h2>Works with your existing event tools.</h2>
+      </div>
+      <div class="integrations-grid fade-up">
+        <div class="integration-logo">HubSpot</div>
+        <div class="integration-logo">Zoho</div>
+        <div class="integration-logo">WebEngage</div>
+        <div class="integration-logo">Eventbrite</div>
+        <div class="integration-logo">Airmeet</div>
+        <div class="integration-logo">Hubilo</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA SECTION ===== -->
+  <section class="cta-section section-padding">
+    <div class="container">
+      <div class="fade-up">
+        <h2>See What Organic Reach<br>Actually Looks Like.</h2>
+        <p class="subheading">
+          Book a 20-minute demo. We'll show you what Premagic would do for your next event.
+        </p>
+        <div class="btn-group" style="justify-content: center;">
+          <a href="https://www.premagic.com/request-a-demo/" class="btn btn-primary">Book a Demo</a>
+          <a href="#" class="btn btn-ghost">Calculate Your Event's Potential &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOLD 7 — WALL OF LOVE ===== -->
+  <section class="linkedin-wall-section section-padding">
+    <div class="container">
+      <div class="section-header text-center fade-up">
+        <p class="section-label">Wall of Love</p>
+        <h2>What Attendees Are Sharing</h2>
+      </div>
+    </div>
+    <div class="ticker-wrapper">
+      <div class="ticker-track">
+        <!-- Card 1 -->
+        <div class="ticker-card">
+          <div class="ticker-card-header">
+            <div class="ticker-card-avatar" style="background: linear-gradient(135deg, #ff957d, #d9629f);">SS</div>
+            <div class="ticker-card-meta">
+              <div class="tname">Shreya S.</div>
+              <div class="ttitle">Marketing Executive, DWTC</div>
+            </div>
+          </div>
+          <div class="ticker-card-body">
+            The photo distribution at GITEX was seamless. Got all my event photos on WhatsApp within minutes! <span class="hashtag">#GITEX2024</span>
+          </div>
+          <div class="ticker-card-image">
+            <img src="https://www.premagic.com/static/871c552e43ed1c12f3cce5b58125d671/9720b/attendee_to_content_creator.png" alt="Attendee post">
+          </div>
+          <div class="ticker-card-footer">
+            <span>247 reactions</span>
+            <span>32 comments</span>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="ticker-card">
+          <div class="ticker-card-header">
+            <div class="ticker-card-avatar" style="background: linear-gradient(135deg, #2b4bc3, #7251f4);">MK</div>
+            <div class="ticker-card-meta">
+              <div class="tname">Mohamed K.</div>
+              <div class="ttitle">Tech Conference Speaker</div>
+            </div>
+          </div>
+          <div class="ticker-card-body">
+            My AI avatar for the conference is ready! Who else is attending? Share yours! <span class="hashtag">#ImAttending</span> <span class="hashtag">#Premagic</span>
+          </div>
+          <div class="ticker-card-image">
+            <img src="https://www.premagic.com/static/807ad10b1578d8b3b1cfaf6d2988627d/1484f/branded-keepsake.png" alt="AI Avatar post">
+          </div>
+          <div class="ticker-card-footer">
+            <span>189 reactions</span>
+            <span>45 comments</span>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="ticker-card">
+          <div class="ticker-card-header">
+            <div class="ticker-card-avatar" style="background: linear-gradient(135deg, #13cf94, #065077);">RJ</div>
+            <div class="ticker-card-meta">
+              <div class="tname">Riya J.</div>
+              <div class="ttitle">Event Manager, Nasscom</div>
+            </div>
+          </div>
+          <div class="ticker-card-body">
+            Our speaker sessions are going viral with branded clips from Premagic. The reach has been incredible! <span class="hashtag">#EventTech</span>
+          </div>
+          <div class="ticker-card-image">
+            <img src="https://www.premagic.com/static/5c9d7933905cf1604f16255e43489089/959a1/fuel-viral.png" alt="Session clip post">
+          </div>
+          <div class="ticker-card-footer">
+            <span>312 reactions</span>
+            <span>58 comments</span>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="ticker-card">
+          <div class="ticker-card-header">
+            <div class="ticker-card-avatar" style="background: linear-gradient(135deg, #f5ab33, #ff6550);">TC</div>
+            <div class="ticker-card-meta">
+              <div class="tname">Thomas C.</div>
+              <div class="ttitle">Director, Step Conference</div>
+            </div>
+          </div>
+          <div class="ticker-card-body">
+            Attendee-generated content is the future of event marketing. Premagic proved it at our conference. <span class="hashtag">#StepConference</span>
+          </div>
+          <div class="ticker-card-image">
+            <img src="https://www.premagic.com/static/fbc17934a2539c118eb33e46a6e04f25/7cd05/ai_dist_custom_1.png" alt="Event content post">
+          </div>
+          <div class="ticker-card-footer">
+            <span>156 reactions</span>
+            <span>21 comments</span>
+          </div>
+        </div>
+        <!-- Card 5 -->
+        <div class="ticker-card">
+          <div class="ticker-card-header">
+            <div class="ticker-card-avatar" style="background: linear-gradient(135deg, #d9629f, #7251f4);">AP</div>
+            <div class="ticker-card-meta">
+              <div class="tname">Anita P.</div>
+              <div class="ttitle">CMO, SaaSBOOMi</div>
+            </div>
+          </div>
+          <div class="ticker-card-body">
+            Just received my personalized event poster from Premagic. The branding is on point! <span class="hashtag">#SaaSBOOMi</span> <span class="hashtag">#EventMarketing</span>
+          </div>
+          <div class="ticker-card-image">
+            <img src="https://www.premagic.com/static/9febf04bbc02a1b97db1f6e4b06a72de/0d4ac/ai_dist_custom_2.png" alt="Branded poster post">
+          </div>
+          <div class="ticker-card-footer">
+            <span>203 reactions</span>
+            <span>37 comments</span>
+          </div>
+        </div>
+        <!-- Card 6 -->
+        <div class="ticker-card">
+          <div class="ticker-card-header">
+            <div class="ticker-card-avatar" style="background: linear-gradient(135deg, #1943df, #13cf94);">DL</div>
+            <div class="ticker-card-meta">
+              <div class="tname">David L.</div>
+              <div class="ttitle">Events Lead, IDC MEA</div>
+            </div>
+          </div>
+          <div class="ticker-card-body">
+            The ROI dashboard from Premagic is exactly what we needed. Finally, event marketing metrics that make sense. <span class="hashtag">#IDCSummit</span>
+          </div>
+          <div class="ticker-card-image">
+            <img src="https://www.premagic.com/static/349956022d7c0fbc0b68adde3a2edb5b/46f5e/ai_dist_custom_4.png" alt="Analytics post">
+          </div>
+          <div class="ticker-card-footer">
+            <span>178 reactions</span>
+            <span>29 comments</span>
+          </div>
+        </div>
+        <!-- Duplicate set for seamless loop -->
+        <div class="ticker-card">
+          <div class="ticker-card-header">
+            <div class="ticker-card-avatar" style="background: linear-gradient(135deg, #ff957d, #d9629f);">SS</div>
+            <div class="ticker-card-meta">
+              <div class="tname">Shreya S.</div>
+              <div class="ttitle">Marketing Executive, DWTC</div>
+            </div>
+          </div>
+          <div class="ticker-card-body">
+            The photo distribution at GITEX was seamless. Got all my event photos on WhatsApp within minutes! <span class="hashtag">#GITEX2024</span>
+          </div>
+          <div class="ticker-card-image">
+            <img src="https://www.premagic.com/static/871c552e43ed1c12f3cce5b58125d671/9720b/attendee_to_content_creator.png" alt="Attendee post">
+          </div>
+          <div class="ticker-card-footer">
+            <span>247 reactions</span>
+            <span>32 comments</span>
+          </div>
+        </div>
+        <div class="ticker-card">
+          <div class="ticker-card-header">
+            <div class="ticker-card-avatar" style="background: linear-gradient(135deg, #2b4bc3, #7251f4);">MK</div>
+            <div class="ticker-card-meta">
+              <div class="tname">Mohamed K.</div>
+              <div class="ttitle">Tech Conference Speaker</div>
+            </div>
+          </div>
+          <div class="ticker-card-body">
+            My AI avatar for the conference is ready! Who else is attending? Share yours! <span class="hashtag">#ImAttending</span> <span class="hashtag">#Premagic</span>
+          </div>
+          <div class="ticker-card-image">
+            <img src="https://www.premagic.com/static/807ad10b1578d8b3b1cfaf6d2988627d/1484f/branded-keepsake.png" alt="AI Avatar post">
+          </div>
+          <div class="ticker-card-footer">
+            <span>189 reactions</span>
+            <span>45 comments</span>
+          </div>
+        </div>
+        <div class="ticker-card">
+          <div class="ticker-card-header">
+            <div class="ticker-card-avatar" style="background: linear-gradient(135deg, #13cf94, #065077);">RJ</div>
+            <div class="ticker-card-meta">
+              <div class="tname">Riya J.</div>
+              <div class="ttitle">Event Manager, Nasscom</div>
+            </div>
+          </div>
+          <div class="ticker-card-body">
+            Our speaker sessions are going viral with branded clips from Premagic. The reach has been incredible! <span class="hashtag">#EventTech</span>
+          </div>
+          <div class="ticker-card-image">
+            <img src="https://www.premagic.com/static/5c9d7933905cf1604f16255e43489089/959a1/fuel-viral.png" alt="Session clip post">
+          </div>
+          <div class="ticker-card-footer">
+            <span>312 reactions</span>
+            <span>58 comments</span>
+          </div>
+        </div>
+        <div class="ticker-card">
+          <div class="ticker-card-header">
+            <div class="ticker-card-avatar" style="background: linear-gradient(135deg, #f5ab33, #ff6550);">TC</div>
+            <div class="ticker-card-meta">
+              <div class="tname">Thomas C.</div>
+              <div class="ttitle">Director, Step Conference</div>
+            </div>
+          </div>
+          <div class="ticker-card-body">
+            Attendee-generated content is the future of event marketing. Premagic proved it at our conference. <span class="hashtag">#StepConference</span>
+          </div>
+          <div class="ticker-card-image">
+            <img src="https://www.premagic.com/static/fbc17934a2539c118eb33e46a6e04f25/7cd05/ai_dist_custom_1.png" alt="Event content post">
+          </div>
+          <div class="ticker-card-footer">
+            <span>156 reactions</span>
+            <span>21 comments</span>
+          </div>
+        </div>
+        <div class="ticker-card">
+          <div class="ticker-card-header">
+            <div class="ticker-card-avatar" style="background: linear-gradient(135deg, #d9629f, #7251f4);">AP</div>
+            <div class="ticker-card-meta">
+              <div class="tname">Anita P.</div>
+              <div class="ttitle">CMO, SaaSBOOMi</div>
+            </div>
+          </div>
+          <div class="ticker-card-body">
+            Just received my personalized event poster from Premagic. The branding is on point! <span class="hashtag">#SaaSBOOMi</span> <span class="hashtag">#EventMarketing</span>
+          </div>
+          <div class="ticker-card-image">
+            <img src="https://www.premagic.com/static/9febf04bbc02a1b97db1f6e4b06a72de/0d4ac/ai_dist_custom_2.png" alt="Branded poster post">
+          </div>
+          <div class="ticker-card-footer">
+            <span>203 reactions</span>
+            <span>37 comments</span>
+          </div>
+        </div>
+        <div class="ticker-card">
+          <div class="ticker-card-header">
+            <div class="ticker-card-avatar" style="background: linear-gradient(135deg, #1943df, #13cf94);">DL</div>
+            <div class="ticker-card-meta">
+              <div class="tname">David L.</div>
+              <div class="ttitle">Events Lead, IDC MEA</div>
+            </div>
+          </div>
+          <div class="ticker-card-body">
+            The ROI dashboard from Premagic is exactly what we needed. Finally, event marketing metrics that make sense. <span class="hashtag">#IDCSummit</span>
+          </div>
+          <div class="ticker-card-image">
+            <img src="https://www.premagic.com/static/349956022d7c0fbc0b68adde3a2edb5b/46f5e/ai_dist_custom_4.png" alt="Analytics post">
+          </div>
+          <div class="ticker-card-footer">
+            <span>178 reactions</span>
+            <span>29 comments</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <svg fill="none" height="30" viewBox="0 0 143 30" width="143" xmlns="http://www.w3.org/2000/svg"><clipPath id="logo-f"><path d="m0 .58105h143v28.8379h-143z"/></clipPath><g clip-path="url(#logo-f)"><g fill="#fff"><path d="m16.9451 10.6694c1.7683 0 3.2563.5949 4.464 1.7863 1.2076 1.1915 1.8114 2.6526 1.8114 4.3849 0 1.7324-.6038 3.1953-1.8114 4.385-1.2077 1.1914-2.6957 1.7863-4.464 1.7863h-3.2294v4.7533c0 .7098-.5751 1.2849-1.2849 1.2849h-1.0531c-.7099 0-1.2849-.5751-1.2849-1.2849v-15.809c0-.7099.575-1.2868 1.2867-1.2868h5.5674zm0 8.9531c.7709 0 1.4089-.2659 1.9175-.8015.5068-.5337.7619-1.195.7619-1.9821 0-.7872-.2533-1.4701-.7619-1.9948-.5086-.5248-1.1466-.7871-1.9175-.7871h-3.2294v5.5673h3.2294z"/><path d="m35.9722 28.4121-3.3426-5.7417h-2.7444v5.0948c0 .7098-.5751 1.2867-1.2867 1.2867h-1.0513c-.7099 0-1.2868-.5751-1.2868-1.2867v-15.809c0-.7099.5751-1.2868 1.2868-1.2868h6.0669c1.6983 0 3.1414.5949 4.3328 1.7863 1.1897 1.1915 1.7863 2.6256 1.7863 4.3059 0 1.1375-.3234 2.1924-.9722 3.1647-.6469.9722-1.5059 1.7018-2.5734 2.1924l3.3174 5.6519c.3325.566-.0755 1.2813-.7332 1.2813h-1.6875c-.4582 0-.8805-.2426-1.1106-.6378zm-6.0867-14.3534v5.4345h3.7289c.6829 0 1.2688-.266 1.7594-.8015.4906-.5338.735-1.1771.735-1.9301s-.2462-1.391-.735-1.9175c-.4906-.5248-1.0765-.7871-1.7594-.7871h-3.7289z"/><path d="m46.4818 25.5835h6.4606c.7098 0 1.2867.5751 1.2867 1.2867v.895c0 .7098-.5751 1.2867-1.2867 1.2867h-8.7968c-.7098 0-1.2867-.5751-1.2867-1.2867v-15.809c0-.7099.5751-1.2868 1.2867-1.2868h8.6656c.7098 0 1.2867.5751 1.2867 1.2868v.8949c0 .7099-.5751 1.2867-1.2867 1.2867h-6.3294v3.9123h5.6716c.7099 0 1.2868.5751 1.2868 1.2867v.841c0 .7099-.5751 1.2868-1.2868 1.2868h-5.6716v4.1225z"/><path d="m75.8639 11.9562v15.8091c0 .7098-.5751 1.2867-1.2867 1.2867h-1.0262c-.7098 0-1.2867-.5751-1.2867-1.2867v-10.6352l-5.0786 8.3546c-.0665.1079-.1815.1762-.3073.1798-.1365.0053-.2641-.0647-.3342-.1798l-5.0445-8.3079v10.5903c0 .7098-.575 1.2867-1.2867 1.2867h-1.0513c-.7098 0-1.2867-.5751-1.2867-1.2867v-15.8109c0-.7098.5751-1.2867 1.2867-1.2867h1.7198c.4493 0 .8662.2336 1.0999.6182l4.8952 8.06 4.8684-8.0582c.2336-.3846.6505-.6218 1.0998-.6218h1.7324c.7098 0 1.2867.5751 1.2867 1.2867z"/><path d="m91.8422 28.1929-.8662-2.4513h-7.5495l-.8105 2.4297c-.1743.5248-.6667.8788-1.2203.8788h-1.4844c-.7332 0-1.2471-.7242-1.0063-1.4179l5.6357-16.102c.1797-.5157.6667-.8608 1.213-.8608h2.6669c.5445 0 1.0315.3433 1.213.8572l5.6806 16.102c.2444.6937-.2695 1.4197-1.0045 1.4197h-1.258c-.5445 0-1.0315-.3433-1.2131-.8572zm-7.235-5.8388h5.1738l-2.6525-7.51z"/><path d="m114.487 19.1765c.71 0 1.287.5751 1.287 1.2867v.1312c0 2.6256-.841 4.7533-2.522 6.3797-1.68 1.6282-3.851 2.4423-6.512 2.4423-2.836 0-5.187-.9237-7.0504-2.7694-1.8636-1.8474-2.7963-4.1009-2.7963-6.7606s.9237-4.9456 2.7693-6.8002c1.8474-1.8546 4.1354-2.7837 6.8664-2.7837 1.715 0 3.282.39 4.7.1681.922.5068 1.711 1.1232 2.366 1.8474.55.611.407 1.5725-.307 1.9822l-.87.5014c-.514.2965-1.166.2049-1.572-.2264-.377-.4026-.841-.7512-1.391-1.0459-.884-.4727-1.869-.7099-2.954-.7099-1.751 0-3.19.5733-4.319 1.7198-1.128 1.1466-1.693 2.595-1.693 4.3454s.574 3.1647 1.72 4.2932c1.147 1.1286 2.665 1.6929 4.556 1.6929 1.4 0 2.561-.3109 3.479-.9327s1.545-1.4754 1.878-2.5608h-4.281c-.71 0-1.287-.5751-1.287-1.2868v-.6307c0-.7099.576-1.2868 1.287-1.2868h6.644z"/><path d="m120.42 10.6694h1.051c.71 0 1.287.5751 1.287 1.2868v15.809c0 .7098-.575 1.2867-1.287 1.2867h-1.051c-.71 0-1.287-.5751-1.287-1.2867v-15.809c0-.7099.575-1.2868 1.287-1.2868z"/><path d="m135.678 29.4182c-2.766 0-5.05-.9184-6.853-2.7568-1.802-1.8384-2.704-4.1045-2.704-6.8002 0-2.6956.902-4.9851 2.704-6.8145 1.803-1.8295 4.087-2.7442 6.853-2.7442 1.662 0 3.198.39 4.607 1.1681.942.5212 1.745 1.1663 2.41 1.9337.523.6038.352 1.5401-.339 1.9408l-.886.514c-.529.3073-1.204.2031-1.605-.2588-.376-.4313-.827-.7925-1.353-1.0836-.841-.4637-1.787-.6955-2.836-.6955-1.787 0-3.226.5607-4.319 1.6803-1.094 1.1196-1.64 2.5734-1.64 4.3579s.546 3.2132 1.64 4.3328c1.095 1.1196 2.534 1.6803 4.319 1.6803 1.049 0 2-.2318 2.848-.6955.527-.2875.972-.6397 1.341-1.0585.402-.4582 1.076-.5625 1.603-.2569l.888.5139c.69.4008.862 1.3353.339 1.9391-.663.7673-1.463 1.4125-2.399 1.9337-1.4.7799-2.94 1.1681-4.622 1.1681z"/></g><path d="m12.3478.58105h-.0018c-.8783 0-1.5904.71205-1.5904 1.59042v3.5205c0 .8784.7121 1.5904 1.5904 1.5904h.0018c.8784 0 1.5905-.7121 1.5905-1.5904v-3.5205c0-.87837-.7121-1.59042-1.5905-1.59042z" fill="#ff6550"/><path d="m4.7910 3.11698c-.62179-.62179-1.62816-.62179-2.24996 0-.62179.62179-.62179 1.62817 0 2.24996l3.56723 3.56723c.62179.62179 1.62817.62179 2.24996 0 .62179-.6218.62179-1.62817 0-2.24996z" fill="#ff6550"/><path d="m5.11093 11.335h-3.5205c-.878372 0-1.590443.712-1.590443 1.5904v.0018c0 .8784.712058 1.5904 1.590443 1.5904h3.5205c.878372 0 1.590443-.712 1.590443-1.5904v-.0018c0-.8784-.712058-1.5904-1.590443-1.5904z" fill="#ff6550"/></g></svg>
+          <p>The event marketing platform that turns attendees into your most powerful marketing channel.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Twitter">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <ul class="footer-links">
+            <li><a href="https://www.premagic.com/smart-photo-distribution-for-seamless-events/">AI Photo Distribution</a></li>
+            <li><a href="https://www.premagic.com/create-event-marketing-posters/">Marketing Posters</a></li>
+            <li><a href="https://www.premagic.com/avatar-studio/">AI Avatars</a></li>
+            <li><a href="https://www.premagic.com/simplify-event-registration/">Registration</a></li>
+            <li><a href="https://www.premagic.com/sponsored-content/">Sponsored Content</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="https://www.premagic.com/case-study/">Case Studies</a></li>
+            <li><a href="https://blog.premagic.com/">Blog</a></li>
+            <li><a href="https://www.premagic.com/partners/">Partners</a></li>
+            <li><a href="https://premagic.com/reports/event-advocacy-playbook/">Playbook</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="https://www.premagic.com/request-a-demo/">Request a Demo</a></li>
+            <li><a href="https://app.premagic.com/">Login</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 Premagic. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Intersection Observer for fade-up animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // YouTube video player
+    const videoWrapper = document.getElementById('videoWrapper');
+    const videoPlayBtn = document.getElementById('videoPlayBtn');
+    const videoThumb = document.getElementById('videoThumb');
+    if (videoPlayBtn) {
+      videoPlayBtn.addEventListener('click', function() {
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube.com/embed/EnwZOYOTfU8?autoplay=1&rel=0';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        videoThumb.style.display = 'none';
+        videoPlayBtn.style.display = 'none';
+        videoWrapper.appendChild(iframe);
+      });
+    }
+
+    // Mobile menu toggle
+    const toggle = document.querySelector('.mobile-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        if (window.innerWidth <= 768) {
+          navLinks.style.flexDirection = 'column';
+          navLinks.style.position = 'absolute';
+          navLinks.style.top = '72px';
+          navLinks.style.left = '0';
+          navLinks.style.right = '0';
+          navLinks.style.background = '#fff';
+          navLinks.style.padding = '24px';
+          navLinks.style.boxShadow = '0 8px 24px rgba(0,0,0,0.1)';
+          navLinks.style.zIndex = '99';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
