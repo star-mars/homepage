@@ -221,19 +221,20 @@
     .hero {
       padding-top: 140px;
       padding-bottom: 80px;
-      background: linear-gradient(180deg, #f8f6ff 0%, #fff 100%);
+      background: linear-gradient(180deg, #0d0638 0%, #1a0e5e 30%, #2a1578 55%, #3d1c8c 75%, #f5f0ff 100%);
       position: relative;
       overflow: hidden;
       text-align: center;
     }
+    .hero h1, .hero .subheading { color: #fff; }
     .hero::before {
       content: '';
       position: absolute;
       top: -200px;
       right: -200px;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(114,81,244,0.06) 0%, transparent 70%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(114,81,244,0.25) 0%, rgba(214,98,159,0.12) 40%, transparent 70%);
       border-radius: 50%;
     }
     .hero::after {
@@ -241,9 +242,9 @@
       position: absolute;
       bottom: -100px;
       left: -150px;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(255,101,80,0.05) 0%, transparent 70%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,101,80,0.15) 0%, rgba(255,149,125,0.08) 40%, transparent 70%);
       border-radius: 50%;
     }
     .hero .container {
@@ -266,15 +267,31 @@
       margin-bottom: 60px;
       justify-content: center;
     }
+    .hero .btn-primary {
+      background: var(--white);
+      color: var(--blue-dark);
+    }
+    .hero .btn-primary:hover {
+      background: #f0f0f0;
+      box-shadow: 0 4px 20px rgba(255,255,255,0.25);
+    }
+    .hero .btn-secondary {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .hero .btn-secondary:hover {
+      background: rgba(255,255,255,0.2);
+    }
 
     /* ===== TRUST BAR — TICKER ===== */
     .trust-bar {
       padding-top: 40px;
-      border-top: 1px solid rgba(0,0,0,0.06);
+      border-top: 1px solid rgba(255,255,255,0.12);
     }
     .trust-bar p {
       font-size: 0.85rem;
-      color: var(--gray-mid);
+      color: rgba(255,255,255,0.6);
       margin-bottom: 20px;
       font-weight: 500;
     }
@@ -295,16 +312,16 @@
     }
     .logo-ticker-wrapper::before {
       left: 0;
-      background: linear-gradient(90deg, #f8f6ff 0%, transparent 100%);
+      background: linear-gradient(90deg, #3d1c8c 0%, transparent 100%);
     }
     .logo-ticker-wrapper::after {
       right: 0;
-      background: linear-gradient(-90deg, #f8f6ff 0%, transparent 100%);
+      background: linear-gradient(-90deg, #3d1c8c 0%, transparent 100%);
     }
     .logo-ticker-track {
       display: flex;
       align-items: center;
-      gap: 48px;
+      gap: 56px;
       animation: logoTicker 30s linear infinite;
       width: max-content;
     }
@@ -313,21 +330,26 @@
       100% { transform: translateX(-50%); }
     }
     .logo-ticker-track .logo-item {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--gray-mid);
-      opacity: 0.55;
-      white-space: nowrap;
       flex-shrink: 0;
       transition: opacity 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .logo-ticker-track .logo-item:hover {
+    .logo-ticker-track .logo-item img {
+      height: 28px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.55;
+      transition: opacity 0.3s;
+    }
+    .logo-ticker-track .logo-item:hover img {
       opacity: 1;
     }
 
     /* ===== FOLD 2 — GITEX CASE STUDY ===== */
     .gitex-section {
-      background: var(--blue-dark);
+      background: linear-gradient(180deg, #0d0638 0%, #1a0e5e 50%, #0d0638 100%);
       color: var(--white);
       position: relative;
       overflow: hidden;
@@ -339,7 +361,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(135deg, rgba(25,67,223,0.15) 0%, rgba(114,81,244,0.1) 50%, rgba(214,98,159,0.08) 100%);
+      background: linear-gradient(135deg, rgba(25,67,223,0.2) 0%, rgba(114,81,244,0.15) 50%, rgba(214,98,159,0.1) 100%);
     }
     .gitex-section .container {
       position: relative;
@@ -451,7 +473,7 @@
 
     /* ===== FOLD 3 — CAMPAIGN EXAMPLES ===== */
     .campaigns-section {
-      background: var(--gray-light);
+      background: linear-gradient(180deg, #f5f0ff 0%, #ede5ff 40%, #e0d4ff 100%);
     }
     .campaigns-section .section-header {
       margin-bottom: 64px;
@@ -550,7 +572,7 @@
 
     /* ===== FOLD 5 — ANALYTICS ===== */
     .analytics-section {
-      background: #fff;
+      background: linear-gradient(180deg, #fff 0%, #f8f5ff 40%, #f0eaff 100%);
       position: relative;
     }
     .analytics-layout {
@@ -675,7 +697,7 @@
 
     /* ===== FOLD 6 — INTEGRATIONS ===== */
     .integrations-section {
-      background: var(--gray-light);
+      background: linear-gradient(180deg, #f0eaff 0%, #e8dfff 50%, #f5f0ff 100%);
     }
     .integrations-grid {
       display: flex;
@@ -706,7 +728,7 @@
 
     /* ===== CTA SECTION ===== */
     .cta-section {
-      background: var(--gradient-dark);
+      background: linear-gradient(160deg, #1a0e5e 0%, #0d0638 40%, #1f0f61 70%, #2a1578 100%);
       color: var(--white);
       text-align: center;
       position: relative;
@@ -763,7 +785,7 @@
 
     /* ===== FOLD 7 — WALL OF LOVE ===== */
     .linkedin-wall-section {
-      background: #fff;
+      background: linear-gradient(180deg, #f5f0ff 0%, #ede5ff 50%, #e0d4ff 100%);
       overflow: hidden;
     }
     .linkedin-wall-section .section-header {
@@ -785,11 +807,11 @@
     }
     .ticker-wrapper::before {
       left: 0;
-      background: linear-gradient(90deg, #fff, transparent);
+      background: linear-gradient(90deg, #ede5ff, transparent);
     }
     .ticker-wrapper::after {
       right: 0;
-      background: linear-gradient(-90deg, #fff, transparent);
+      background: linear-gradient(-90deg, #ede5ff, transparent);
     }
     .ticker-track {
       display: flex;
@@ -876,7 +898,7 @@
 
     /* ===== FOOTER ===== */
     .footer {
-      background: var(--blue-dark);
+      background: linear-gradient(180deg, #0d0638 0%, #080320 100%);
       color: rgba(255,255,255,0.8);
       padding: 64px 0 32px;
       position: relative;
@@ -1091,50 +1113,46 @@
         </div>
       </div>
       <div class="trust-bar fade-up">
-        <p>Powering GITEX, Informa Connect, IDC, G2, and 2,000+ events worldwide</p>
+        <p>2000+ Event Organizers and Companies use Premagic for their flagship events</p>
         <div class="logo-ticker-wrapper">
           <div class="logo-ticker-track">
-            <span class="logo-item">GITEX Global</span>
-            <span class="logo-item">Informa Connect</span>
-            <span class="logo-item">IDC</span>
-            <span class="logo-item">G2 Live</span>
-            <span class="logo-item">Nasscom</span>
-            <span class="logo-item">Step Conference</span>
-            <span class="logo-item">Khaleej Times</span>
-            <span class="logo-item">HCL Tech</span>
-            <span class="logo-item">African Tech Summit</span>
-            <span class="logo-item">SaaSBOOMi</span>
-            <span class="logo-item">Wow Awards</span>
-            <span class="logo-item">IFEAT</span>
-            <span class="logo-item">Asia Berlin</span>
-            <span class="logo-item">GLA Global</span>
-            <span class="logo-item">Currency Research</span>
-            <span class="logo-item">JSConf India</span>
-            <span class="logo-item">UmagineChennai</span>
-            <span class="logo-item">Middle East Event Show</span>
-            <span class="logo-item">Entrepreneurs Org</span>
-            <span class="logo-item">Shows of India</span>
+            <span class="logo-item"><img src="https://www.gitex.com/contents/Theme-25/images/logo-new-lockup.png" alt="GITEX Global"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/informaconnect.com" alt="Informa Connect"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/idc.com" alt="IDC"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/g2.com" alt="G2"></span>
+            <span class="logo-item"><img src="https://nasscom.in/themes/custom/nasscomredesigntheme/images/logo.svg" alt="Nasscom"></span>
+            <span class="logo-item"><img src="https://cdn.prod.website-files.com/6615a761fb83776fb5668f99/661bfcd1838392f63196d9db_STEP_PRIMARY%20LOGO.svg" alt="Step Conference"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/khaleejtimes.com" alt="Khaleej Times"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/hcltech.com" alt="HCL Tech"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/africatechsummit.com" alt="African Tech Summit"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/saasboomi.com" alt="SaaSBOOMi"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/wowawards.com" alt="Wow Awards"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/ifeat.org" alt="IFEAT"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/asiaberlin.eu" alt="Asia Berlin"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/glaalliance.com" alt="GLA Global"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/currencyresearch.com" alt="Currency Research"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/hubspot.com" alt="HubSpot"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/jsconf.com" alt="JSConf"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/eo.org" alt="Entrepreneurs Org"></span>
             <!-- Duplicate for seamless loop -->
-            <span class="logo-item">GITEX Global</span>
-            <span class="logo-item">Informa Connect</span>
-            <span class="logo-item">IDC</span>
-            <span class="logo-item">G2 Live</span>
-            <span class="logo-item">Nasscom</span>
-            <span class="logo-item">Step Conference</span>
-            <span class="logo-item">Khaleej Times</span>
-            <span class="logo-item">HCL Tech</span>
-            <span class="logo-item">African Tech Summit</span>
-            <span class="logo-item">SaaSBOOMi</span>
-            <span class="logo-item">Wow Awards</span>
-            <span class="logo-item">IFEAT</span>
-            <span class="logo-item">Asia Berlin</span>
-            <span class="logo-item">GLA Global</span>
-            <span class="logo-item">Currency Research</span>
-            <span class="logo-item">JSConf India</span>
-            <span class="logo-item">UmagineChennai</span>
-            <span class="logo-item">Middle East Event Show</span>
-            <span class="logo-item">Entrepreneurs Org</span>
-            <span class="logo-item">Shows of India</span>
+            <span class="logo-item"><img src="https://www.gitex.com/contents/Theme-25/images/logo-new-lockup.png" alt="GITEX Global"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/informaconnect.com" alt="Informa Connect"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/idc.com" alt="IDC"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/g2.com" alt="G2"></span>
+            <span class="logo-item"><img src="https://nasscom.in/themes/custom/nasscomredesigntheme/images/logo.svg" alt="Nasscom"></span>
+            <span class="logo-item"><img src="https://cdn.prod.website-files.com/6615a761fb83776fb5668f99/661bfcd1838392f63196d9db_STEP_PRIMARY%20LOGO.svg" alt="Step Conference"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/khaleejtimes.com" alt="Khaleej Times"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/hcltech.com" alt="HCL Tech"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/africatechsummit.com" alt="African Tech Summit"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/saasboomi.com" alt="SaaSBOOMi"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/wowawards.com" alt="Wow Awards"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/ifeat.org" alt="IFEAT"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/asiaberlin.eu" alt="Asia Berlin"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/glaalliance.com" alt="GLA Global"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/currencyresearch.com" alt="Currency Research"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/hubspot.com" alt="HubSpot"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/jsconf.com" alt="JSConf"></span>
+            <span class="logo-item"><img src="https://logo.clearbit.com/eo.org" alt="Entrepreneurs Org"></span>
           </div>
         </div>
       </div>
