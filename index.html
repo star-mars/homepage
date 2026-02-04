@@ -221,7 +221,7 @@
     .hero {
       padding-top: 140px;
       padding-bottom: 80px;
-      background: linear-gradient(180deg, #0d0638 0%, #1a0e5e 30%, #2a1578 55%, #3d1c8c 75%, #f5f0ff 100%);
+      background: linear-gradient(180deg, #0d0638 0%, #10084a 40%, #0d0638 100%);
       position: relative;
       overflow: hidden;
       text-align: center;
@@ -234,7 +234,7 @@
       right: -200px;
       width: 700px;
       height: 700px;
-      background: radial-gradient(circle, rgba(114,81,244,0.25) 0%, rgba(214,98,159,0.12) 40%, transparent 70%);
+      background: radial-gradient(circle, rgba(114,81,244,0.12) 0%, rgba(214,98,159,0.06) 40%, transparent 70%);
       border-radius: 50%;
     }
     .hero::after {
@@ -244,7 +244,7 @@
       left: -150px;
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(255,101,80,0.15) 0%, rgba(255,149,125,0.08) 40%, transparent 70%);
+      background: radial-gradient(circle, rgba(255,101,80,0.08) 0%, rgba(255,149,125,0.04) 40%, transparent 70%);
       border-radius: 50%;
     }
     .hero .container {
@@ -264,7 +264,7 @@
       margin: 0 auto 40px;
     }
     .hero .btn-group {
-      margin-bottom: 60px;
+      margin-bottom: 32px;
       justify-content: center;
     }
     .hero .btn-primary {
@@ -284,14 +284,41 @@
       background: rgba(255,255,255,0.2);
     }
 
+    /* G2 Rating */
+    .g2-rating {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 48px;
+    }
+    .g2-rating .g2-logo {
+      height: 32px;
+      width: auto;
+    }
+    .g2-rating .g2-stars {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .g2-rating .g2-stars svg {
+      width: 18px;
+      height: 18px;
+    }
+    .g2-rating .g2-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+    }
+
     /* ===== TRUST BAR — TICKER ===== */
     .trust-bar {
       padding-top: 40px;
-      border-top: 1px solid rgba(255,255,255,0.12);
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
     .trust-bar p {
       font-size: 0.85rem;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.55);
       margin-bottom: 20px;
       font-weight: 500;
     }
@@ -312,16 +339,16 @@
     }
     .logo-ticker-wrapper::before {
       left: 0;
-      background: linear-gradient(90deg, #3d1c8c 0%, transparent 100%);
+      background: linear-gradient(90deg, #0d0638 0%, transparent 100%);
     }
     .logo-ticker-wrapper::after {
       right: 0;
-      background: linear-gradient(-90deg, #3d1c8c 0%, transparent 100%);
+      background: linear-gradient(-90deg, #0d0638 0%, transparent 100%);
     }
     .logo-ticker-track {
       display: flex;
       align-items: center;
-      gap: 56px;
+      gap: 20px;
       animation: logoTicker 30s linear infinite;
       width: max-content;
     }
@@ -331,25 +358,29 @@
     }
     .logo-ticker-track .logo-item {
       flex-shrink: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.3s, transform 0.3s;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: #fff;
+      border-radius: 8px;
+      padding: 8px 18px;
+      height: 44px;
+      opacity: 0.85;
+    }
+    .logo-ticker-track .logo-item:hover {
+      opacity: 1;
+      transform: scale(1.05);
     }
     .logo-ticker-track .logo-item img {
-      height: 28px;
+      height: 22px;
       width: auto;
-      filter: brightness(0) invert(1);
-      opacity: 0.55;
-      transition: opacity 0.3s;
-    }
-    .logo-ticker-track .logo-item:hover img {
-      opacity: 1;
+      object-fit: contain;
     }
 
     /* ===== FOLD 2 — GITEX CASE STUDY ===== */
     .gitex-section {
-      background: linear-gradient(180deg, #0d0638 0%, #1a0e5e 50%, #0d0638 100%);
+      background: linear-gradient(180deg, #0d0638 0%, #10084a 50%, #0d0638 100%);
       color: var(--white);
       position: relative;
       overflow: hidden;
@@ -1111,6 +1142,21 @@
           <a href="https://www.premagic.com/request-a-demo/" class="btn btn-primary">Book a Demo</a>
           <a href="#how-it-works" class="btn btn-secondary">See How It Works &darr;</a>
         </div>
+      </div>
+      <div class="g2-rating fade-up">
+        <svg class="g2-logo" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="8" fill="#FF492C"/>
+          <path d="M20.5 9L23.09 14.26L28.91 15.11L24.71 19.21L25.67 25.01L20.5 22.26L15.33 25.01L16.29 19.21L12.09 15.11L17.91 14.26L20.5 9Z" fill="white"/>
+          <text x="20.5" y="34" text-anchor="middle" font-family="Poppins, sans-serif" font-size="8" font-weight="700" fill="white">G2</text>
+        </svg>
+        <div class="g2-stars">
+          <svg viewBox="0 0 24 24" fill="#FFB802"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FFB802"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FFB802"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FFB802"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><defs><linearGradient id="star-partial"><stop offset="80%" stop-color="#FFB802"/><stop offset="80%" stop-color="#555"/></linearGradient></defs><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="url(#star-partial)"/></svg>
+        </div>
+        <span class="g2-text">4.8 ratings</span>
       </div>
       <div class="trust-bar fade-up">
         <p>2000+ Event Organizers and Companies use Premagic for their flagship events</p>
